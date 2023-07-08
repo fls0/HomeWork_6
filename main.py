@@ -24,6 +24,10 @@ def handle_archive(filename: Path, target_folder: Path) -> None:
         folder_for_file.rmdir()
     filename.unlink()
 
+def handle_document(filename: Path, target_folder: Path):
+    target_folder.mkdir(exist_ok=True, parents=True)
+    filename.replace(target_folder / normalize(filename.name))
+
 def handle_folder(folder: Path):
     try:
         folder.rmdir()
@@ -43,9 +47,11 @@ def main(folder: Path):
     for file in parser.MP3_AUDIO:
         handle_media(file, folder / 'audio' / 'MP3')
     for file in parser.MY_OTHER:
-        handle_media(file, folder / 'MY_OTHER')
+        handle_other(file, folder / 'MY_OTHER')
     for file in parser.ARCHIVES:
-        handle_media(file, folder / 'ARCHIVES')
+        handle_archive(file, folder / 'ARCHIVES')
+    for file in parser.TXT_DOCUMENTS:
+        handle_document(file, folder / 'documents' / 'TXT')
     
     for folder in parser.FOLDERS[::-1]:
         handle_folder(folder)

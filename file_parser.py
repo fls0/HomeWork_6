@@ -7,6 +7,7 @@ JPG_IMAGES = []
 PNG_IMAGES = []
 SVG_IMAGES = []
 MP3_AUDIO = []
+TXT_DOCUMENTS = []
 MY_OTHER = []
 ARCHIVES = []
 
@@ -17,6 +18,7 @@ REGISTER_EXTENSION = {
     'SVG': SVG_IMAGES,
     'MP3': MP3_AUDIO,
     'ZIP': ARCHIVES,
+    'TXT': TXT_DOCUMENTS,
 }
 
 FOLDERS = []
@@ -51,14 +53,4 @@ def scan(folder: Path) -> None: #ітеруємся по папці
 
 if __name__ == '__main__':
     folder_to_scan = sys.argv[1]
-    print(f'Start in folder {folder_to_scan}')
     scan(Path(folder_to_scan))
-    print(f'Images jpeg {JPEG_IMAGES}')
-    print(f'Images {JPG_IMAGES}')
-    print(f'Images {PNG_IMAGES}')
-
-
-
-
-    print(f'Types of files in folder: {EXTENSION}')
-    print(f'Unknown files of types: {UNKNOWN}')
